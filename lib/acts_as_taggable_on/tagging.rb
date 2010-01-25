@@ -11,4 +11,5 @@ class Tagging < ActiveRecord::Base #:nodoc:
   validates_presence_of :tag_id
   
   validates_uniqueness_of :tag_id, :scope => [:taggable_type, :taggable_id, :context]
+  named_scope :on_context, lambda { |name| { :conditions => ["context = ?", name] } }
 end
